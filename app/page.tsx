@@ -1,7 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import KpiStrip from "@/components/KpiStrip";
+import Modules from "@/components/Modules";
 import Features from "@/components/Features";
+import Recommendations from "@/components/Recommendations";
+import ErpSection from "@/components/ErpSection";
 import ScatterPlot from "@/components/ScatterPlot";
 import ScrambleSection from "@/components/ScrambleSection";
 import Industries from "@/components/Industries";
@@ -17,7 +20,16 @@ export default function Home() {
       <div style={{ height: "2rem" }} />
       <div className="divider" />
 
+      <Modules />
+      <div className="divider" />
+
       <Features />
+      <div className="divider" />
+
+      <Recommendations />
+      <div className="divider" />
+
+      <ErpSection />
       <div className="divider" />
 
       <ScatterPlot />

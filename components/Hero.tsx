@@ -30,8 +30,8 @@ export default function Hero() {
         </span>
       </h1>
       <p className="hero-sub">
-        Metas, rutas, KPIs e inteligencia artificial para equipos comerciales que
-        operan en campo.
+        Visibilidad en tiempo real y recomendaciones accionables para equipos
+        comerciales que operan en campo.
       </p>
       <div className="cta-row">
         <MagneticButton className="magnetic-btn" onClick={() => openModal("demo")}>

@@ -3,11 +3,17 @@
 import type { ReactNode } from "react";
 import { useTilt } from "@/lib/cursor";
 
-export default function TiltCard({ children }: { children: ReactNode }) {
+export default function TiltCard({
+  children,
+  className = "tilt-card",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const { ref, onMouseMove, onMouseLeave } = useTilt();
   return (
     <div
-      className="tilt-card"
+      className={className}
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}

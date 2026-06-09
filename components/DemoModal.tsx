@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/lib/modal";
 import { animCount } from "@/lib/animate";
 
-type Tab = "kpis" | "equipo" | "metas";
+type Tab = "kpis" | "equipo" | "metas" | "intelligence";
 
 type Bar = { name: string; w: number; color?: string };
 
@@ -20,6 +20,23 @@ const metasBars: Bar[] = [
   { name: "Bebidas", w: 71, color: "#378ADD" },
   { name: "Snacks", w: 90, color: "#7F77DD" },
 ];
+
+type Client = { name: string; score: number; segment: string; alert: string };
+
+const clients: Client[] = [
+  { name: "Despensa María", score: 24, segment: "Crítico", alert: "Sin compras hace 67 días" },
+  { name: "Kiosco Norte", score: 38, segment: "En riesgo", alert: "No compra hace 41 días" },
+  { name: "Maxikiosco Centro", score: 55, segment: "Atención", alert: "Frecuencia en caída" },
+  { name: "Almacén El Sol", score: 72, segment: "Estable", alert: "Bajó 18% vs mes pasado" },
+  { name: "Drugstore 24h", score: 91, segment: "Alto valor", alert: "Listo para línea Premium" },
+];
+
+// Health-score color buckets — green / accent / red.
+function scoreColor(score: number) {
+  if (score >= 80) return "#1F9D55";
+  if (score >= 50) return "#BA7517";
+  return "#D85A30";
+}
 
 function BarRow({ bar, filled }: { bar: Bar; filled: boolean }) {
   return (
@@ -70,6 +87,13 @@ export default function DemoModal() {
     if (t === "metas" && !metasFilled) setTimeout(() => setMetasFilled(true), 50);
   };
 
+  const tabs: { id: Tab; label: string }[] = [
+    { id: "kpis", label: "KPIs" },
+    { id: "equipo", label: "Equipo" },
+    { id: "metas", label: "Metas" },
+    { id: "intelligence", label: "Intelligence" },
+  ];
+
   return (
     <div
       className={`overlay${open ? " open" : ""}`}
@@ -87,24 +111,15 @@ export default function DemoModal() {
 
         <div className="demo-screen">
           <div className="demo-tabs">
-            <button
-              className={`demo-tab${tab === "kpis" ? " active" : ""}`}
-              onClick={() => switchTab("kpis")}
-            >
-              KPIs
-            </button>
-            <button
-              className={`demo-tab${tab === "equipo" ? " active" : ""}`}
-              onClick={() => switchTab("equipo")}
-            >
-              Equipo
-            </button>
-            <button
-              className={`demo-tab${tab === "metas" ? " active" : ""}`}
-              onClick={() => switchTab("metas")}
-            >
-              Metas
-            </button>
+            {tabs.map((t) => (
+              <button
+                key={t.id}
+                className={`demo-tab${tab === t.id ? " active" : ""}`}
+                onClick={() => switchTab(t.id)}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
 
           <div style={{ display: tab === "kpis" ? "block" : "none" }}>
@@ -145,6 +160,45 @@ export default function DemoModal() {
             <div className="demo-bar-row">
               {metasBars.map((b) => (
                 <BarRow key={b.name} bar={b} filled={metasFilled} />
+              ))}
+            </div>
+          </div>
+
+          <div style={{ display: tab === "intelligence" ? "block" : "none" }}>
+            <div
+              style={{
+                fontSize: "13px",
+                color: "var(--color-text-secondary)",
+                marginBottom: "12px",
+              }}
+            >
+              Score de salud por cliente
+            </div>
+            <div className="intel-list">
+              {clients.map((c) => (
+                <div className="intel-item" key={c.name}>
+                  <div className="intel-main">
+                    <span className="intel-name">{c.name}</span>
+                    <span className="intel-alert">{c.alert}</span>
+                  </div>
+                  <div className="intel-side">
+                    <span
+                      className="intel-seg"
+                      style={{
+                        color: scoreColor(c.score),
+                        background: `${scoreColor(c.score)}22`,
+                      }}
+                    >
+                      {c.segment}
+                    </span>
+                    <span
+                      className="intel-score"
+                      style={{ color: scoreColor(c.score) }}
+                    >
+                      {c.score}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

@@ -2,42 +2,42 @@ import TiltCard from "./TiltCard";
 
 const features = [
   {
-    icon: "ti-chart-bar",
-    title: "Dashboard en tiempo real",
-    desc: "KPIs por vendedor, equipo y zona con estacionalidad automática y comparación vs año anterior.",
+    icon: "ti-alert-triangle",
+    title: "Clientes en Riesgo",
+    desc: "Detecta automáticamente qué clientes están por dejar de comprar, antes de que pase.",
   },
   {
-    icon: "ti-target",
-    title: "Gestión de metas",
-    desc: "La meta sigue al territorio, no a la persona. Reasignaciones automáticas sin perder el histórico.",
+    icon: "ti-activity-heartbeat",
+    title: "Score de Salud",
+    desc: "Un puntaje claro por cliente que combina frecuencia, volumen y tendencia de compra.",
   },
   {
-    icon: "ti-map-pin",
-    title: "Rutas optimizadas",
-    desc: "Seleccioná los PDVs, el sistema optimiza el orden y abre Google Maps directo.",
+    icon: "ti-calendar-stats",
+    title: "Próxima Compra Estimada",
+    desc: "Predice cuándo va a volver a comprar cada cliente para anticipar la visita.",
   },
   {
-    icon: "ti-robot",
-    title: "IA conversacional",
-    desc: "Preguntá en lenguaje natural. Datos reales de tu equipo al instante, de forma segura y auditable.",
+    icon: "ti-category-2",
+    title: "Segmentación Automática",
+    desc: "Agrupa tu cartera por comportamiento real, sin tener que armar reglas a mano.",
   },
   {
-    icon: "ti-bell",
-    title: "Alertas automáticas",
-    desc: "Notificaciones cuando un vendedor cae debajo del umbral o un cliente no compra.",
+    icon: "ti-route",
+    title: "Densificación de Rutas",
+    desc: "Encuentra clientes cercanos y desatendidos para aprovechar cada salida a campo.",
   },
   {
-    icon: "ti-file-spreadsheet",
-    title: "Carga flexible",
-    desc: "Funciona con cualquier ERP vía Excel. Sin acceso a sistemas tercerizados.",
+    icon: "ti-bulb",
+    title: "Centro de Recomendaciones IA",
+    desc: "Convierte todo lo anterior en acciones concretas, priorizadas por impacto.",
   },
 ];
 
 export default function Features() {
   return (
     <section className="content" id="features">
-      <p className="section-label">Funcionalidades</p>
-      <h2 className="section-title">Todo en un solo lugar</h2>
+      <p className="section-label">Distro Intelligence</p>
+      <h2 className="section-title">Inteligencia aplicada a tu operación</h2>
       <div className="features-grid">
         {features.map((f) => (
           <TiltCard key={f.title}>
