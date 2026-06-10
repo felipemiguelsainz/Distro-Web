@@ -49,6 +49,20 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .nav-link:hover { color: var(--color-text-primary); border-bottom-color: var(--accent); }
 .nav-cta { padding: 8px 18px; background: var(--accent); color: white; border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; font-family: var(--font-sans); }
 .nav-cta:hover { background: var(--accent-dark); transform: scale(1.03); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+/* Hamburguesa (oculta en desktop) */
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; padding: 8px; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--color-text-primary); border-radius: 2px; transition: transform 0.25s ease, opacity 0.2s ease; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Panel desplegable mobile */
+.nav-mobile { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 4px; padding: 0.75rem 1.25rem 1.25rem; background: var(--color-bg); border-bottom: 0.5px solid var(--color-border); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.nav-mobile.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+.nav-mobile-link { text-align: left; padding: 14px 4px; font-size: 16px; color: var(--color-text-primary); background: none; border: none; border-bottom: 0.5px solid var(--color-border); cursor: pointer; font-family: var(--font-sans); }
+.nav-mobile-cta { margin-top: 0.75rem; padding: 14px; background: var(--accent); color: white; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 500; cursor: pointer; font-family: var(--font-sans); }
 
 .hero { padding: 7rem 2rem 5rem; text-align: center; position: relative; overflow: hidden; }
 .hero-grid { position: absolute; inset: 0; pointer-events: none; }
@@ -191,12 +205,49 @@ h2.section-title { font-size: 32px; font-weight: 500; line-height: 1.2; margin-b
 .intel-seg { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 999px; }
 .intel-score { font-size: 18px; font-weight: 500; width: 28px; text-align: right; }
 
-@media (max-width: 600px) {
-  h1 { font-size: 36px; }
-  .text-scramble { font-size: 36px; }
+/* ---- Tablet ---- */
+@media (max-width: 860px) {
+  nav { padding: 1rem 1.25rem; }
   .nav-links { display: none; }
+  .nav-right .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-mobile { display: flex; }
+  .hero { padding: 4.5rem 1.5rem 3.5rem; }
+  h1 { font-size: 44px; }
+  section.content { padding: 3rem 1.5rem; }
+  .kpi-row { padding: 0 1.5rem; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+  .hero { padding: 3.5rem 1.25rem 3rem; }
+  h1 { font-size: 34px; }
+  .hero-sub { font-size: 16px; margin-bottom: 2rem; }
+  .text-scramble { font-size: 30px; min-height: 44px; }
+  h2.section-title { font-size: 26px; }
+  section.content { padding: 2.5rem 1.25rem; }
+  .kpi-row { padding: 0 1.25rem; }
   .form-row { grid-template-columns: 1fr; }
   .module-card { padding: 1.5rem; }
+  .modal { padding: 1.5rem; }
+
+  /* 16px evita el auto-zoom de Safari iOS al enfocar inputs */
+  .form-input { font-size: 16px; padding: 12px; }
+
+  /* Targets táctiles más cómodos */
+  .demo-tab { padding: 8px 14px; font-size: 13px; }
+  .cta-row .magnetic-btn, .cta-row .ghost-btn { width: 100%; justify-content: center; }
+
+  /* KPIs del demo: 3 en fila quedan apretados, mejor de a 1 */
+  .demo-kpi-row { grid-template-columns: 1fr; }
+  .rec-card { padding: 0.875rem 1rem; }
+}
+
+/* ---- Mobile chico ---- */
+@media (max-width: 380px) {
+  h1 { font-size: 30px; }
+  .text-scramble { font-size: 26px; }
+  .nav-cta { padding: 8px 14px; font-size: 13px; }
 }
 
 /* Dispositivos táctiles / sin mouse: sin cursor custom, cursor nativo de vuelta */
